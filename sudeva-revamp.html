@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudeva — India's Premier Residential Football School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#112240;--navy-light:#1a3360;--red:#C8102E;--red-bright:#e8122e;--gold:#C9A84C;--white:#F5F5F0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--white);font-family:'Barlow',sans-serif;overflow-x:hidden;}
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:200;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:70px;transition:background .4s;}
+nav.scrolled{background:rgba(10,22,40,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(201,168,76,.15);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;}
+.nav-logo-crest{width:38px;height:38px;background:var(--gold);clip-path:polygon(50% 0%,100% 20%,100% 75%,50% 100%,0% 75%,0% 20%);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-logo-crest::after{content:'S';font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--navy);}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;color:var(--white);}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.65);text-decoration:none;transition:color .2s;cursor:pointer;background:none;border:none;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-cta{background:var(--red)!important;color:var(--white)!important;padding:9px 20px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+/* PAGES */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 40%,rgba(200,16,46,.12) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 20% 80%,rgba(201,168,76,.08) 0%,transparent 50%),linear-gradient(160deg,#0A1628 0%,#0d1e35 50%,#080f1e 100%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(201,168,76,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-accent{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(to bottom,transparent,var(--gold),var(--red),transparent);}
+.hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:120px 60px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.hero-eyebrow-line{width:40px;height:2px;background:var(--gold);}
+.hero-eyebrow span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(68px,7.5vw,108px);line-height:.9;letter-spacing:2px;margin-bottom:24px;}
+.line-red{color:var(--red);display:block;}
+.line-gold{color:transparent;-webkit-text-stroke:1.5px var(--gold);display:block;}
+.hero-subtitle{font-size:16px;font-weight:300;line-height:1.75;color:rgba(245,245,240,.65);max-width:460px;margin-bottom:36px;}
+.hero-actions{display:flex;gap:16px;align-items:center;}
+.btn-primary{background:var(--red);color:var(--white);padding:15px 34px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:background .2s,transform .2s;border:none;cursor:pointer;display:inline-block;text-decoration:none;}
+.btn-primary:hover{background:var(--red-bright);transform:translateY(-2px);}
+.btn-ghost{color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;padding:15px 0;border:none;border-bottom:1px solid rgba(201,168,76,.3);background:none;transition:border-color .2s;}
+.btn-ghost:hover{border-color:var(--gold);}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.15);margin-top:44px;}
+.hero-stat{padding:22px 18px;background:rgba(10,22,40,.8);text-align:center;}
+.hero-stat-num{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--gold);display:block;line-height:1;}
+.hero-stat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.45);margin-top:4px;}
+.hero-right{display:flex;justify-content:center;align-items:center;}
+.hero-crest-wrap{position:relative;width:360px;height:360px;}
+.hero-crest-ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(201,168,76,.2);animation:ring-spin 20s linear infinite;}
+.hero-crest-ring::before{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--gold);}
+@keyframes ring-spin{to{transform:rotate(360deg);}}
+.hero-crest-inner{position:absolute;inset:28px;background:linear-gradient(145deg,var(--navy-mid),var(--navy));border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,.1);}
+/* TICKER */
+.ticker{background:var(--red);padding:11px 0;overflow:hidden;}
+.ticker-track{display:flex;gap:60px;white-space:nowrap;animation:ticker 30s linear infinite;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--white);display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.ticker-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.5);}
+/* SECTIONS */
+.sw{padding:90px 60px;max-width:1400px;margin:0 auto;}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.eyebrow-line{width:32px;height:2px;background:var(--gold);}
+.eyebrow span{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,5vw,68px);line-height:.95;margin-bottom:18px;}
+.sec-body{font-size:15px;font-weight:300;line-height:1.8;color:rgba(245,245,240,.6);max-width:580px;}
+/* PHILOSOPHY */
+.philosophy-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.pillar{padding:26px 0;border-bottom:1px solid rgba(201,168,76,.1);display:grid;grid-template-columns:48px 1fr;gap:18px;}
+.pillar:first-child{border-top:1px solid rgba(201,168,76,.1);}
+.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:12px;color:var(--red);letter-spacing:1px;padding-top:3px;}
+.pillar-title{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.pillar-body{font-size:13px;font-weight:300;line-height:1.7;color:rgba(245,245,240,.5);}
+/* IMPACT */
+.impact-belt{background:var(--red);}
+.impact-belt-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.impact-item{padding:56px 36px;border-right:1px solid rgba(255,255,255,.15);}
+.impact-item:last-child{border-right:none;}
+.impact-num{font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:1;color:var(--white);display:block;}
+.impact-suffix{font-size:32px;color:rgba(255,255,255,.45);}
+.impact-label{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:6px;}
+/* PROGRAMMES */
+.programmes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:56px;}
+.prog-card{background:var(--navy-mid);padding:36px 28px;border-top:3px solid transparent;transition:border-color .3s,transform .3s,background .3s;position:relative;overflow:hidden;}
+.prog-card:hover{border-color:var(--gold);transform:translateY(-4px);background:var(--navy-light);}
+.prog-age{font-family:'Bebas Neue',sans-serif;font-size:52px;color:rgba(201,168,76,.12);line-height:1;margin-bottom:14px;transition:color .3s;}
+.prog-card:hover .prog-age{color:rgba(201,168,76,.28);}
+.prog-label{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
+.prog-desc{font-size:13px;font-weight:300;line-height:1.7;color:rgba(245,245,240,.5);}
+.prog-arrow{position:absolute;bottom:20px;right:20px;width:28px;height:28px;border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);transition:background .2s;}
+.prog-card:hover .prog-arrow{background:var(--gold);color:var(--navy);}
+/* SCOUTING */
+.scouting-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.scout-map{aspect-ratio:1;background:var(--navy-mid);border:1px solid rgba(201,168,76,.1);position:relative;overflow:hidden;}
+.scout-map::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0,transparent 39px,rgba(201,168,76,.03) 40px),repeating-linear-gradient(90deg,transparent 0,transparent 39px,rgba(201,168,76,.03) 40px);}
+.sdot{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pd 2s ease-in-out infinite;}
+.sdot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(201,168,76,.4);animation:pr 2s ease-in-out infinite;}
+@keyframes pd{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes pr{0%{transform:scale(1);opacity:1}100%{transform:scale(2.5);opacity:0}}
+.slbl{position:absolute;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:1px;color:rgba(201,168,76,.65);white-space:nowrap;}
+.scout-state{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.05);font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(245,245,240,.55);transition:color .2s;}
+.scout-state:hover{color:var(--gold);}
+.sdsm{width:5px;height:5px;border-radius:50%;background:var(--red);flex-shrink:0;}
+/* ACH */
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px;}
+.ach-card{background:var(--navy-mid);padding:36px;border-left:3px solid transparent;transition:border-color .3s,background .3s;}
+.ach-card:hover{border-color:var(--red);background:var(--navy-light);}
+.ach-icon{font-size:28px;margin-bottom:14px;display:block;}
+.ach-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
+.ach-body{font-size:13px;font-weight:300;line-height:1.7;color:rgba(245,245,240,.5);}
+/* PARTNERS */
+.partners-bg{background:var(--navy-mid);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);}
+.partners-inner{max-width:1400px;margin:0 auto;padding:50px 60px;}
+.partners-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(245,245,240,.25);text-align:center;margin-bottom:36px;}
+.partners-logos{display:flex;align-items:center;justify-content:center;}
+.partner-logo{flex:1;padding:18px 24px;border-right:1px solid rgba(255,255,255,.06);text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.28);transition:color .3s;cursor:default;}
+.partner-logo:hover{color:var(--gold);}
+.partner-logo:last-child{border-right:none;}
+/* INSTAGRAM */
+.insta-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;}
+.insta-info{display:flex;align-items:center;gap:14px;}
+.insta-icon{width:44px;height:44px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.insta-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;}
+.insta-sub{font-size:12px;color:rgba(245,245,240,.4);margin-top:2px;}
+.insta-follow{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.4);padding:10px 20px;text-decoration:none;transition:background .2s;display:inline-block;}
+.insta-follow:hover{background:rgba(201,168,76,.1);}
+.insta-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;}
+.ipost{aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;}
+.ipost-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;transition:transform .4s;}
+.ipost:hover .ipost-img{transform:scale(1.08);}
+.ipost-overlay{position:absolute;inset:0;background:rgba(10,22,40,0);transition:background .3s;display:flex;align-items:center;justify-content:center;gap:14px;}
+.ipost:hover .ipost-overlay{background:rgba(10,22,40,.65);}
+.istat{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;color:white;display:flex;align-items:center;gap:4px;opacity:0;transition:opacity .3s;}
+.ipost:hover .istat{opacity:1;}
+.ip1{background:linear-gradient(135deg,#0d1e35,#1a3360,#C8102E33);}
+.ip2{background:linear-gradient(135deg,#1a2a1a,#2a4a2a);}
+.ip3{background:linear-gradient(135deg,#1a1a2e,#16213e);}
+.ip4{background:linear-gradient(135deg,#2a1a1a,#3d1a1a);}
+.ip5{background:linear-gradient(135deg,#0A1628,#C9A84C22);}
+.ip6{background:linear-gradient(135deg,#1a2a2a,#0f3030);}
+.ip7{background:linear-gradient(135deg,#2a2a1a,#3d3a10);}
+.ip8{background:linear-gradient(135deg,#1a1628,#2d1a40);}
+.ip9{background:linear-gradient(135deg,#281a1a,#401a28);}
+.ip10{background:linear-gradient(135deg,#1a281a,#1a4028);}
+.ip11{background:linear-gradient(135deg,#28201a,#403018);}
+.ip12{background:linear-gradient(135deg,#1a2028,#182040);}
+.ipost-label{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.3);}
+/* YOUTUBE */
+.yt-bg{background:var(--navy-mid);}
+.yt-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;}
+.yt-ch{display:flex;align-items:center;gap:14px;}
+.yt-icon{width:48px;height:48px;background:#FF0000;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.yt-name{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:1px;}
+.yt-sub-text{font-size:12px;color:rgba(245,245,240,.4);margin-top:2px;}
+.yt-subscribe{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:#FF0000;color:white;border:none;padding:11px 22px;cursor:pointer;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.yt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.yt-card{background:var(--navy);overflow:hidden;cursor:pointer;transition:transform .3s;}
+.yt-card:hover{transform:translateY(-4px);}
+.yt-thumb{aspect-ratio:16/9;position:relative;display:flex;align-items:center;justify-content:center;}
+.yt-t1{background:linear-gradient(135deg,#0a1628,#C8102E22);}
+.yt-t2{background:linear-gradient(135deg,#0d1e35,#C9A84C22);}
+.yt-t3{background:linear-gradient(135deg,#0a1628,#1a3360);}
+.yt-t4{background:linear-gradient(135deg,#0f0f0f,#C8102E22);}
+.yt-t5{background:linear-gradient(135deg,#0d1e35,#112240);}
+.yt-t6{background:linear-gradient(135deg,#0a1628,#C9A84C11);}
+.yt-play-btn{width:52px;height:52px;background:rgba(255,0,0,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .2s,background .2s;}
+.yt-play-btn::after{content:'';width:0;height:0;border-style:solid;border-width:10px 0 10px 20px;border-color:transparent transparent transparent white;margin-left:4px;}
+.yt-card:hover .yt-play-btn{transform:scale(1.1);background:rgba(255,0,0,1);}
+.yt-dur{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.75);font-family:'Barlow Condensed',sans-serif;font-size:11px;padding:2px 6px;color:white;letter-spacing:1px;}
+.yt-info{padding:16px 18px;}
+.yt-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.5px;margin-bottom:6px;line-height:1.3;}
+.yt-meta{font-size:12px;color:rgba(245,245,240,.35);font-weight:300;}
+.yt-thumb-icon{position:absolute;font-size:52px;opacity:.12;}
+/* CTA */
+.cta-block{background:linear-gradient(135deg,var(--red) 0%,#8b0b1e 100%);padding:90px 60px;position:relative;overflow:hidden;}
+.cta-block::before{content:'SUDEVA';position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:280px;color:rgba(255,255,255,.04);white-space:nowrap;line-height:1;pointer-events:none;}
+.cta-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center;}
+.cta-btns{display:flex;flex-direction:column;gap:12px;}
+.btn-white{background:var(--white);color:var(--red);padding:17px 38px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);border:none;cursor:pointer;transition:transform .2s;white-space:nowrap;}
+.btn-white:hover{transform:translateY(-2px);}
+.btn-outline-wh{border:1px solid rgba(255,255,255,.4);color:var(--white);background:none;padding:17px 38px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:border-color .2s;white-space:nowrap;}
+.btn-outline-wh:hover{border-color:white;}
+/* FOOTER */
+footer{background:#050d18;padding:70px 60px 36px;border-top:1px solid rgba(201,168,76,.12);}
+.footer-inner{max-width:1400px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:36px;}
+.footer-brand{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:4px;display:block;margin-bottom:14px;}
+.footer-tag{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.footer-desc{font-size:13px;font-weight:300;line-height:1.8;color:rgba(245,245,240,.35);max-width:260px;}
+.footer-col h4{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:22px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.footer-col ul li{font-size:13px;font-weight:300;color:rgba(245,245,240,.45);cursor:pointer;transition:color .2s;}
+.footer-col ul li:hover{color:var(--white);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:11px;color:rgba(245,245,240,.2);letter-spacing:1px;}
+.footer-social{display:flex;gap:10px;}
+.social-btn{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:rgba(245,245,240,.35);cursor:pointer;text-decoration:none;transition:border-color .2s,color .2s;}
+.social-btn:hover{border-color:var(--gold);color:var(--gold);}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,13,24,.92);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--navy-mid);border:1px solid rgba(201,168,76,.2);width:100%;max-width:600px;max-height:90vh;overflow-y:auto;position:relative;}
+.modal-header{background:var(--red);padding:26px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;}
+.modal-close{background:none;border:none;color:white;font-size:24px;cursor:pointer;line-height:1;}
+.modal-tabs{display:flex;border-bottom:1px solid rgba(201,168,76,.15);}
+.modal-tab{flex:1;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.4);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.modal-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.mform{padding:32px;display:none;}
+.mform.active{display:block;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+.fg label{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:12px 16px;font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg select option{background:var(--navy-mid);}
+.fg textarea{resize:vertical;min-height:80px;}
+.fnote{font-size:12px;color:rgba(245,245,240,.35);line-height:1.6;margin-bottom:20px;}
+.fsub{width:100%;background:var(--red);color:var(--white);border:none;padding:16px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:background .2s;}
+.fsub:hover{background:var(--red-bright);}
+.fsuccess{display:none;padding:36px;text-align:center;}
+.fsuccess-icon{font-size:52px;margin-bottom:16px;}
+.fsuccess-title{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);margin-bottom:10px;letter-spacing:2px;}
+.fsuccess-body{font-size:14px;font-weight:300;color:rgba(245,245,240,.6);line-height:1.7;}
+/* FACILITIES */
+.page-hero{padding:130px 60px 70px;max-width:1400px;margin:0 auto;}
+.fac-main-grid{display:grid;grid-template-columns:3fr 2fr;gap:3px;margin-bottom:3px;}
+.fac-row{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;}
+.fac-tile{position:relative;overflow:hidden;cursor:pointer;}
+.fac-img{width:100%;min-height:280px;display:flex;align-items:center;justify-content:center;font-size:60px;transition:transform .5s;position:relative;}
+.fac-tile:hover .fac-img{transform:scale(1.05);}
+.fac-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.9) 0%,rgba(10,22,40,.25) 50%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;}
+.fac-tag{display:inline-block;background:var(--red);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;margin-bottom:8px;align-self:flex-start;}
+.fac-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;}
+.fac-desc{font-size:12px;font-weight:300;color:rgba(245,245,240,.6);margin-top:4px;}
+.fb1{background:linear-gradient(145deg,#0a2a0a,#155215);}
+.fb2{background:linear-gradient(145deg,#0a1628,#1a2a40);}
+.fb3{background:linear-gradient(145deg,#1a0a0a,#3a1010);}
+.fb4{background:linear-gradient(145deg,#0f0a1a,#1a1040);}
+.fb5{background:linear-gradient(145deg,#0a2020,#103030);}
+.fb6{background:linear-gradient(145deg,#201a0a,#40341a);}
+.fb7{background:linear-gradient(145deg,#0a1a0a,#153020);}
+.fb8{background:linear-gradient(145deg,#1a0a1a,#301a40);}
+.fac-feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.fac-feat{background:var(--navy-mid);padding:32px 28px;}
+.fac-feat-icon{font-size:28px;margin-bottom:12px;}
+.fac-feat-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.fac-feat-body{font-size:13px;font-weight:300;color:rgba(245,245,240,.5);line-height:1.65;}
+.vid-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;}
+.vid-tile{aspect-ratio:16/9;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.vid-play{width:64px;height:64px;background:rgba(200,16,46,.85);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:2;transition:transform .2s,background .2s;}
+.vid-play::after{content:'';width:0;height:0;border-style:solid;border-width:12px 0 12px 24px;border-color:transparent transparent transparent white;margin-left:5px;}
+.vid-tile:hover .vid-play{transform:scale(1.1);background:var(--red);}
+.vid-label{position:absolute;bottom:0;left:0;right:0;padding:16px 20px;background:linear-gradient(transparent,rgba(10,22,40,.9));z-index:2;}
+.vid-label-text{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;}
+.vid-sub{font-size:11px;color:rgba(245,245,240,.5);margin-top:4px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;}
+/* TEAM PAGE */
+.team-tabs{display:flex;gap:3px;margin-bottom:48px;border-bottom:1px solid rgba(201,168,76,.12);}
+.team-tab{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.4);background:none;border:none;border-bottom:2px solid transparent;padding:12px 0;margin-right:32px;cursor:pointer;transition:color .2s,border-color .2s;position:relative;bottom:-1px;}
+.team-tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.team-card{background:var(--navy-mid);overflow:hidden;border-top:3px solid transparent;transition:border-color .3s,transform .3s;}
+.team-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.team-card-photo{aspect-ratio:3/4;position:relative;overflow:hidden;}
+.team-card-img{width:100%;height:100%;object-fit:cover;display:flex;align-items:flex-end;justify-content:center;transition:transform .5s;}
+.team-card:hover .team-card-img{transform:scale(1.04);}
+.team-card-body{padding:20px 20px 22px;}
+.team-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px;}
+.team-role{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.team-bio{font-size:12px;font-weight:300;line-height:1.65;color:rgba(245,245,240,.45);}
+.team-quals{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.team-qual{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:1px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.2);color:var(--gold);padding:3px 8px;}
+.team-dept-label{font-family:'Bebas Neue',sans-serif;font-size:32px;color:rgba(201,168,76,.12);letter-spacing:2px;margin-bottom:16px;display:block;}
+.jobs-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:20px;}
+.job-card{background:var(--navy-mid);padding:28px;border-left:3px solid transparent;transition:border-color .3s,background .3s;cursor:pointer;}
+.job-card:hover{border-color:var(--red);background:var(--navy-light);}
+.job-dept{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.job-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+.job-meta{font-size:12px;color:rgba(245,245,240,.4);display:flex;gap:14px;margin-bottom:12px;}
+.job-desc{font-size:13px;font-weight:300;line-height:1.65;color:rgba(245,245,240,.5);}
+.job-apply{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;}
+.job-apply:hover{text-decoration:underline;}
+/* ALUMNI */
+.alumni-controls{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:48px;}
+.year-select{background:var(--navy-mid);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:14px 48px 14px 20px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0 L6 8 L12 0' stroke='%23C9A84C' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;min-width:180px;}
+.alumni-year-title{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--gold);letter-spacing:2px;}
+.alumni-count{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.4);}
+.alumni-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.alumni-card{background:var(--navy-mid);padding:0;border-top:3px solid transparent;transition:border-color .3s,transform .3s;overflow:hidden;}
+.alumni-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.alumni-card-photo{aspect-ratio:3/4;background:var(--navy-light);display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;}
+.alumni-card-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.alumni-card-body{padding:16px 18px 20px;}
+.alumni-avatar{width:68px;height:68px;border-radius:50%;background:var(--navy-light);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;border:2px solid rgba(201,168,76,.2);}
+.alumni-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;}
+.alumni-pos{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.alumni-club{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);padding:8px 12px;}
+.alumni-badge{width:22px;height:22px;background:var(--red);clip-path:polygon(50% 0%,100% 20%,100% 75%,50% 100%,0% 75%,0% 20%);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:white;flex-shrink:0;font-family:'Bebas Neue',sans-serif;}
+.alumni-club-name{font-size:12px;color:rgba(245,245,240,.6);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:1px;}
+.alumni-nat{display:inline-block;margin-top:8px;background:rgba(200,16,46,.15);border:1px solid rgba(200,16,46,.3);font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;color:var(--red);}
+.alumni-stats-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.1);margin-top:56px;max-width:560px;}
+.as-item{text-align:center;padding:28px 20px;}
+.as-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);display:block;}
+.as-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.4);font-family:'Barlow Condensed',sans-serif;}
+/* ANIM */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .7s ease forwards;}
+.d1{animation-delay:.1s;opacity:0;}
+.d2{animation-delay:.25s;opacity:0;}
+.d3{animation-delay:.4s;opacity:0;}
+.d4{animation-delay:.55s;opacity:0;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--navy);}
+::-webkit-scrollbar-thumb{background:var(--red);}
+
+/* ADMIN BUTTON */
+.admin-fab{
+  position:fixed; bottom:28px; right:28px; z-index:500;
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(10,22,40,0.92); border:1px solid rgba(201,168,76,0.3);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:18px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+  transition:border-color .2s, transform .2s, background .2s;
+  text-decoration:none;
+}
+.admin-fab:hover{
+  border-color:var(--gold); transform:scale(1.1);
+  background:rgba(10,22,40,0.98);
+}
+.admin-fab-tooltip{
+  position:absolute; right:52px; top:50%; transform:translateY(-50%);
+  background:rgba(10,22,40,0.95); border:1px solid rgba(201,168,76,0.2);
+  font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase; color:var(--gold);
+  padding:6px 12px; white-space:nowrap; border-radius:4px;
+  opacity:0; pointer-events:none; transition:opacity .2s;
+}
+.admin-fab:hover .admin-fab-tooltip{ opacity:1; }
+
+/* ADMIN LOGIN OVERLAY */
+.admin-login-overlay{
+  position:fixed; inset:0; background:rgba(5,13,24,0.95);
+  z-index:2000; display:none; align-items:center; justify-content:center;
+  backdrop-filter:blur(16px);
+}
+.admin-login-overlay.open{ display:flex; }
+.admin-login-box{
+  background:#13161d; border:1px solid rgba(201,168,76,0.2);
+  padding:40px; width:100%; max-width:380px; border-radius:12px;
+  box-shadow:0 32px 80px rgba(0,0,0,0.6);
+}
+.admin-login-logo{ display:flex; align-items:center; gap:10px; margin-bottom:28px; }
+.admin-login-crest{
+  width:36px; height:36px; background:var(--gold);
+  clip-path:polygon(50% 0%,100% 20%,100% 75%,50% 100%,0% 75%,0% 20%);
+  display:flex; align-items:center; justify-content:center;
+}
+.admin-login-crest::after{ content:'S'; font-family:'Bebas Neue',sans-serif; font-size:18px; color:var(--navy); }
+.admin-login-title{ font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; }
+.admin-login-sub{ font-size:12px; color:rgba(245,245,240,0.4); margin-top:2px; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; }
+.admin-login-label{ font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:6px; }
+.admin-login-input{
+  width:100%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+  color:var(--white); padding:12px 16px; font-family:'Barlow',sans-serif; font-size:14px;
+  outline:none; border-radius:6px; transition:border-color .2s; margin-bottom:16px;
+}
+.admin-login-input:focus{ border-color:var(--gold); }
+.admin-login-btn{
+  width:100%; background:var(--gold); color:var(--navy); border:none; padding:14px;
+  font-family:'Barlow Condensed',sans-serif; font-size:14px; font-weight:700;
+  letter-spacing:3px; text-transform:uppercase; cursor:pointer; border-radius:6px;
+  transition:background .2s; margin-top:4px;
+}
+.admin-login-btn:hover{ background:var(--gold-light,#e8c96a); }
+.admin-login-error{ font-size:12px; color:var(--red); margin-top:10px; text-align:center; display:none; font-family:'Barlow Condensed',sans-serif; letter-spacing:1px; }
+.admin-login-close{ position:absolute; top:16px; right:16px; background:none; border:none; color:rgba(245,245,240,0.4); font-size:20px; cursor:pointer; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-crest"></div>
+    <span class="nav-logo-text">SUDEVA</span>
+  </div>
+  <ul class="nav-links">
+    <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+    <li><a id="nav-facilities" onclick="showPage('facilities')">Facilities</a></li>
+    <li><a id="nav-alumni" onclick="showPage('alumni')">Alumni</a></li>
+    <li><a id="nav-team" onclick="showPage('team')">Our Team</a></li>
+    <li><a onclick="scrollTo2('programmes')">Programmes</a></li>
+    <li><a class="nav-cta" onclick="openModal()">Apply Now</a></li>
+  </ul>
+</nav>
+
+<!-- ██████████ PAGE: HOME ██████████ -->
+<div class="page active" id="page-home">
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-accent"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow fade-up"><div class="hero-eyebrow-line"></div><span>Est. 2014 · New Delhi, India</span></div>
+      <h1 class="hero-title fade-up d1"><span>INDIA'S</span><span class="line-red">LARGEST</span><span class="line-gold">FOOTBALL</span><span>SCHOOL</span></h1>
+      <p class="hero-subtitle fade-up d2">A residential football institution built for the relentless. We find talent where no one looks, develop it where no one dares, and elevate it to where India belongs — on the world stage.</p>
+      <div class="hero-actions fade-up d3">
+        <button class="btn-primary" onclick="openModal()">Apply for Trials</button>
+        <button class="btn-ghost" onclick="showPage('facilities')">See Our Facilities →</button>
+      </div>
+      <div class="hero-stats fade-up d4">
+        <div class="hero-stat"><span class="hero-stat-num">10+</span><span class="hero-stat-label">Years of Excellence</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">25+</span><span class="hero-stat-label">States Scouted</span></div>
+        <div class="hero-stat"><span class="hero-stat-num">U13–U23</span><span class="hero-stat-label">Age Groups</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-crest-wrap">
+        <div class="hero-crest-ring"></div>
+        <div class="hero-crest-inner">
+          <svg width="150" height="180" viewBox="0 0 160 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M80 4 L154 28 L154 110 C154 148 116 176 80 186 C44 176 6 148 6 110 L6 28 Z" fill="#112240" stroke="#C9A84C" stroke-width="1.5"/>
+            <path d="M80 4 L154 28 L154 64 L6 64 L6 28 Z" fill="#C8102E" opacity=".9"/>
+            <text x="80" y="52" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="21" fill="white" letter-spacing="4">SUDEVA</text>
+            <line x1="6" y1="64" x2="154" y2="64" stroke="#C9A84C" stroke-width="1"/>
+            <circle cx="80" cy="115" r="30" fill="none" stroke="#C9A84C" stroke-width=".8" opacity=".3"/>
+            <ellipse cx="80" cy="90" rx="7" ry="15" fill="#C9A84C" opacity=".75"/>
+            <ellipse cx="80" cy="90" rx="7" ry="15" fill="#C9A84C" opacity=".45" transform="rotate(40 80 115)"/>
+            <ellipse cx="80" cy="90" rx="7" ry="15" fill="#C9A84C" opacity=".45" transform="rotate(-40 80 115)"/>
+            <ellipse cx="80" cy="90" rx="7" ry="15" fill="#C9A84C" opacity=".35" transform="rotate(80 80 115)"/>
+            <ellipse cx="80" cy="90" rx="7" ry="15" fill="#C9A84C" opacity=".35" transform="rotate(-80 80 115)"/>
+            <text x="80" y="162" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-size="10" fill="#C9A84C" letter-spacing="3" font-weight="600">DELHI FC</text>
+            <text x="38" y="164" font-size="9" fill="#C9A84C">★</text><text x="112" y="164" font-size="9" fill="#C9A84C">★</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track">
+  <span class="ticker-item"><span class="ticker-dot"></span>I-League · Sudeva Delhi FC</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>VfB Stuttgart Youth Partnership 2024</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>AIFF Elite Category Academy</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Premier League Next Gen Cup 2023</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>FIFA U-17 World Cup Official Training Venue</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>First Delhi Club in Hero I-League</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Owns CD Olímpic de Xàtiva · Spain</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>I-League · Sudeva Delhi FC</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>VfB Stuttgart Youth Partnership 2024</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>AIFF Elite Category Academy</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Premier League Next Gen Cup 2023</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>FIFA U-17 World Cup Official Training Venue</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>First Delhi Club in Hero I-League</span>
+  <span class="ticker-item"><span class="ticker-dot"></span>Owns CD Olímpic de Xàtiva · Spain</span>
+</div></div>
+
+<!-- PHILOSOPHY -->
+<div style="background:var(--navy-mid)"><div class="sw" id="about">
+  <div class="philosophy-grid">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Our Philosophy</span></div>
+      <h2 class="sec-title">BELIEVE.<br>TRAIN.<br>RISE.</h2>
+      <p class="sec-body">Founded in 2014 by Anuj Gupta and Vijay Hakari, Sudeva was built on a singular obsession: to give India's most talented footballers the infrastructure and opportunities they deserve — regardless of where they come from or what they can afford.</p>
+      <br><br><button class="btn-primary" onclick="openModal()">Join the Academy</button>
+    </div>
+    <div>
+      <div class="pillar"><span class="pillar-num">01</span><div><div class="pillar-title">Residential Excellence</div><p class="pillar-body">India's first full-residential football school in Delhi-NCR. A 24/7 environment for physical, technical, and personal growth.</p></div></div>
+      <div class="pillar"><span class="pillar-num">02</span><div><div class="pillar-title">Pan-India Scouting</div><p class="pillar-body">60–75 days per year on the ground — tribal belts, hill states, coastal cities, and metros. Financial background is never a barrier.</p></div></div>
+      <div class="pillar"><span class="pillar-num">03</span><div><div class="pillar-title">International Exposure</div><p class="pillar-body">Bundesliga partnership, Spanish club ownership, Premier League Next Gen Cup, and international training camps.</p></div></div>
+      <div class="pillar"><span class="pillar-num">04</span><div><div class="pillar-title">Education & Character</div><p class="pillar-body">Football is the vehicle. Human development is the mission. Every Sudevan graduates a stronger individual.</p></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- IMPACT -->
+<div class="impact-belt"><div class="impact-belt-inner">
+  <div class="impact-item"><span class="impact-num">10<span class="impact-suffix">+</span></span><div class="impact-label">Years Running</div></div>
+  <div class="impact-item"><span class="impact-num">25<span class="impact-suffix">+</span></span><div class="impact-label">States Scouted</div></div>
+  <div class="impact-item"><span class="impact-num">8</span><div class="impact-label">Age-Group Teams</div></div>
+  <div class="impact-item"><span class="impact-num">100<span class="impact-suffix">%</span></span><div class="impact-label">Scholarship Funded</div></div>
+</div></div>
+
+<!-- PROGRAMMES -->
+<div class="sw" id="programmes">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>Academy Programmes</span></div>
+  <h2 class="sec-title">FROM GRASSROOTS<br>TO GLORY</h2>
+  <div class="programmes-grid">
+    <div class="prog-card"><div class="prog-age">U13</div><div class="prog-label">Foundation</div><p class="prog-desc">Technical groundwork, body coordination, and the footballing mindset. Where champions begin their journey at age 9–13.</p><div class="prog-arrow">→</div></div>
+    <div class="prog-card"><div class="prog-age">U15</div><div class="prog-label">Development</div><p class="prog-desc">Tactical awareness, position specialisation, and competitive exposure at state and national level.</p><div class="prog-arrow">→</div></div>
+    <div class="prog-card"><div class="prog-age">U17</div><div class="prog-label">Performance</div><p class="prog-desc">High-performance training, I-League Youth Cup, international tournament exposure. Boys & Girls squads.</p><div class="prog-arrow">→</div></div>
+    <div class="prog-card"><div class="prog-age">U19–U23</div><div class="prog-label">Elite</div><p class="prog-desc">The bridge to professional football. I-League pathway, national camp nominations, European club transfers.</p><div class="prog-arrow">→</div></div>
+  </div>
+</div>
+
+<!-- SCOUTING -->
+<div style="background:var(--navy-mid)"><div class="sw" id="scouting">
+  <div class="scouting-grid">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>National Scouting Network</span></div>
+      <h2 class="sec-title">NO TALENT<br>LEFT BEHIND</h2>
+      <p class="sec-body">Our founders spend 60–75 days each year on the ground — in tribal villages, coastal towns, mountain settlements, and urban slums — with one purpose: finding the next generation of Indian football stars.</p>
+      <br><br>
+      <div class="scout-state"><span class="sdsm"></span> Manipur · Mizoram · Meghalaya</div>
+      <div class="scout-state"><span class="sdsm"></span> Punjab · Haryana · Chandigarh</div>
+      <div class="scout-state"><span class="sdsm"></span> Uttarakhand · Himachal Pradesh</div>
+      <div class="scout-state"><span class="sdsm"></span> West Bengal · Odisha · Jharkhand</div>
+      <div class="scout-state"><span class="sdsm"></span> Karnataka · Kerala · Tamil Nadu</div>
+      <div class="scout-state"><span class="sdsm"></span> Rajasthan · Gujarat · Madhya Pradesh</div>
+    </div>
+    <div class="scout-map">
+      <div class="sdot" style="top:20%;left:62%;animation-delay:0s"><span class="slbl" style="left:14px;top:-4px">Imphal</span></div>
+      <div class="sdot" style="top:14%;left:68%;animation-delay:.4s"><span class="slbl" style="left:14px;top:-4px">Shillong</span></div>
+      <div class="sdot" style="top:26%;left:28%;animation-delay:.8s"><span class="slbl" style="left:14px;top:-4px">Chandigarh</span></div>
+      <div class="sdot" style="top:34%;left:38%;animation-delay:1.2s"><span class="slbl" style="left:14px;top:-4px">Delhi</span></div>
+      <div class="sdot" style="top:68%;left:34%;animation-delay:1.6s"><span class="slbl" style="right:14px;top:-4px">Bengaluru</span></div>
+      <div class="sdot" style="top:74%;left:52%;animation-delay:2s"><span class="slbl" style="left:14px;top:-4px">Chennai</span></div>
+      <div class="sdot" style="top:58%;left:76%;animation-delay:2.4s"><span class="slbl" style="left:14px;top:-4px">Kolkata</span></div>
+      <div class="sdot" style="top:46%;left:22%;animation-delay:2.8s"><span class="slbl" style="left:14px;top:-4px">Jaipur</span></div>
+      <div style="position:absolute;bottom:14px;left:14px;font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(201,168,76,.35);text-transform:uppercase">National Scout Network</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ACHIEVEMENTS -->
+<div class="sw" id="achievements">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>Legacy & Milestones</span></div>
+  <h2 class="sec-title">A DECADE OF FIRSTS</h2>
+  <div class="ach-grid">
+    <div class="ach-card"><span class="ach-icon">🏆</span><div class="ach-title">I-League Debut</div><p class="ach-body">First and only club from Delhi in Hero I-League, debuting in 2020–21 with a fully all-Indian squad.</p></div>
+    <div class="ach-card"><span class="ach-icon">⚽</span><div class="ach-title">FIFA World Cup Venue</div><p class="ach-body">Sudeva's pitch was selected as an official training venue for the FIFA U-17 World Cup 2017, hosted in India.</p></div>
+    <div class="ach-card"><span class="ach-icon">🌍</span><div class="ach-title">European Club Ownership</div><p class="ach-body">First Indian football organization to acquire a European club — CD Olímpic de Xàtiva in Spain's third division.</p></div>
+    <div class="ach-card"><span class="ach-icon">🇩🇪</span><div class="ach-title">VfB Stuttgart Partnership</div><p class="ach-body">Strategic 3-year youth development partnership with Bundesliga club VfB Stuttgart, backed by Hindalco Industries.</p></div>
+    <div class="ach-card"><span class="ach-icon">🏅</span><div class="ach-title">Bayern Munich Recognition</div><p class="ach-body">Alumnus Shubho Paul selected as one of 15 global youth players by FC Bayern Munich's world squad programme.</p></div>
+    <div class="ach-card"><span class="ach-icon">🎓</span><div class="ach-title">AIFF Elite Accreditation</div><p class="ach-body">Sudeva's academy holds the prestigious 'Elite Category' accreditation from the All India Football Federation.</p></div>
+  </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div style="background:var(--navy)"><div class="sw">
+  <div class="insta-header">
+    <div>
+      <div class="eyebrow"><div class="eyebrow-line"></div><span>Follow Our Journey</span></div>
+      <div class="insta-info">
+        <div class="insta-icon">📸</div>
+        <div>
+          <div class="insta-name">@sudevasportsofficial</div>
+          <div class="insta-sub">34K Followers · 2,900+ Posts · Instagram</div>
+        </div>
+      </div>
+    </div>
+    <a href="https://www.instagram.com/sudevasportsofficial/" target="_blank" class="insta-follow">Follow on Instagram ↗</a>
+  </div>
+  <div class="insta-grid">
+    <div class="ipost"><div class="ipost-img ip1"><span style="font-size:34px">⚽</span><span class="ipost-label">MATCH DAY</span></div><div class="ipost-overlay"><span class="istat">❤️ 1.2K</span><span class="istat">💬 48</span></div></div>
+    <div class="ipost"><div class="ipost-img ip2"><span style="font-size:34px">🏃</span><span class="ipost-label">TRAINING</span></div><div class="ipost-overlay"><span class="istat">❤️ 890</span><span class="istat">💬 31</span></div></div>
+    <div class="ipost"><div class="ipost-img ip3"><span style="font-size:34px">🌟</span><span class="ipost-label">SPOTLIGHT</span></div><div class="ipost-overlay"><span class="istat">❤️ 2.1K</span><span class="istat">💬 87</span></div></div>
+    <div class="ipost"><div class="ipost-img ip4"><span style="font-size:34px">🏆</span><span class="ipost-label">VICTORY</span></div><div class="ipost-overlay"><span class="istat">❤️ 3.4K</span><span class="istat">💬 112</span></div></div>
+    <div class="ipost"><div class="ipost-img ip5"><span style="font-size:34px">🇮🇳</span><span class="ipost-label">INDIA CAMP</span></div><div class="ipost-overlay"><span class="istat">❤️ 5.2K</span><span class="istat">💬 204</span></div></div>
+    <div class="ipost"><div class="ipost-img ip6"><span style="font-size:34px">✈️</span><span class="ipost-label">EUROPE TOUR</span></div><div class="ipost-overlay"><span class="istat">❤️ 4.7K</span><span class="istat">💬 178</span></div></div>
+    <div class="ipost"><div class="ipost-img ip7"><span style="font-size:34px">💪</span><span class="ipost-label">GYM SESSION</span></div><div class="ipost-overlay"><span class="istat">❤️ 756</span><span class="istat">💬 22</span></div></div>
+    <div class="ipost"><div class="ipost-img ip8"><span style="font-size:34px">🎯</span><span class="ipost-label">SCOUTING</span></div><div class="ipost-overlay"><span class="istat">❤️ 1.8K</span><span class="istat">💬 56</span></div></div>
+    <div class="ipost"><div class="ipost-img ip9"><span style="font-size:34px">🌄</span><span class="ipost-label">MORNING DRILL</span></div><div class="ipost-overlay"><span class="istat">❤️ 934</span><span class="istat">💬 38</span></div></div>
+    <div class="ipost"><div class="ipost-img ip10"><span style="font-size:34px">🤝</span><span class="ipost-label">PARTNERSHIP</span></div><div class="ipost-overlay"><span class="istat">❤️ 2.6K</span><span class="istat">💬 91</span></div></div>
+    <div class="ipost"><div class="ipost-img ip11"><span style="font-size:34px">🏟️</span><span class="ipost-label">AMBEDKAR STADIUM</span></div><div class="ipost-overlay"><span class="istat">❤️ 3.1K</span><span class="istat">💬 143</span></div></div>
+    <div class="ipost"><div class="ipost-img ip12"><span style="font-size:34px">🥅</span><span class="ipost-label">GOAL!</span></div><div class="ipost-overlay"><span class="istat">❤️ 4.1K</span><span class="istat">💬 167</span></div></div>
+  </div>
+  <div style="text-align:center;margin-top:24px"><a href="https://www.instagram.com/sudevasportsofficial/" target="_blank" style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(245,245,240,.4);text-decoration:none;border-bottom:1px solid rgba(245,245,240,.15);padding-bottom:4px">View all posts on Instagram →</a></div>
+</div></div>
+
+<!-- YOUTUBE -->
+<div class="yt-bg"><div class="sw">
+  <div class="yt-header">
+    <div class="yt-ch">
+      <div class="yt-icon">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="white"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 0 0-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8z"/><polygon points="9.6,15.6 15.8,12 9.6,8.4" fill="#FF0000"/></svg>
+      </div>
+      <div>
+        <div class="yt-name">Sudeva Delhi FC</div>
+        <div class="yt-sub-text">Match highlights · Player stories · Campus life · Behind the scenes</div>
+      </div>
+    </div>
+    <button class="yt-subscribe" onclick="window.open('https://www.youtube.com/@sudevadelhifc','_blank')">Subscribe on YouTube</button>
+  </div>
+  <div class="yt-grid">
+    <div class="yt-card"><div class="yt-thumb yt-t1"><div class="yt-thumb-icon">⚽</div><div class="yt-play-btn"></div><span class="yt-dur">8:24</span></div><div class="yt-info"><div class="yt-title">Sudeva Delhi FC vs Mohammedan SC — Full Match Highlights | I-League 2024</div><div class="yt-meta">48K views · 3 weeks ago</div></div></div>
+    <div class="yt-card"><div class="yt-thumb yt-t2"><div class="yt-thumb-icon">🌟</div><div class="yt-play-btn"></div><span class="yt-dur">12:07</span></div><div class="yt-info"><div class="yt-title">From Village to Professional — Korou Singh's Journey with Sudeva</div><div class="yt-meta">92K views · 1 month ago</div></div></div>
+    <div class="yt-card"><div class="yt-thumb yt-t3"><div class="yt-thumb-icon">🇩🇪</div><div class="yt-play-btn"></div><span class="yt-dur">6:48</span></div><div class="yt-info"><div class="yt-title">Inside Our Training Camp with VfB Stuttgart — Germany 2024</div><div class="yt-meta">67K views · 2 months ago</div></div></div>
+    <div class="yt-card"><div class="yt-thumb yt-t4"><div class="yt-thumb-icon">🏟️</div><div class="yt-play-btn"></div><span class="yt-dur">4:32</span></div><div class="yt-info"><div class="yt-title">Tour of Sudeva Sports Village — Our Residential Facility</div><div class="yt-meta">34K views · 3 months ago</div></div></div>
+    <div class="yt-card"><div class="yt-thumb yt-t5"><div class="yt-thumb-icon">🎯</div><div class="yt-play-btn"></div><span class="yt-dur">18:30</span></div><div class="yt-info"><div class="yt-title">Pan-India Scouting 2024 — 8 States, 400 Players, 20 Selected</div><div class="yt-meta">115K views · 4 months ago</div></div></div>
+    <div class="yt-card"><div class="yt-thumb yt-t6"><div class="yt-thumb-icon">🏆</div><div class="yt-play-btn"></div><span class="yt-dur">9:15</span></div><div class="yt-info"><div class="yt-title">Maidaan & Sudeva — How We Helped Tell Indian Football's Story</div><div class="yt-meta">220K views · 6 months ago</div></div></div>
+  </div>
+</div></div>
+
+<!-- PARTNERS -->
+<div class="partners-bg"><div class="partners-inner">
+  <div class="partners-label">Trusted By India's Leading Organisations</div>
+  <div class="partners-logos">
+    <div class="partner-logo">HCL Foundation</div>
+    <div class="partner-logo">ONGC</div>
+    <div class="partner-logo">Hindalco · Aditya Birla</div>
+    <div class="partner-logo">JSL Jindal Stainless</div>
+    <div class="partner-logo">Liquid Life</div>
+    <div class="partner-logo">VfB Stuttgart</div>
+  </div>
+</div></div>
+
+<!-- CTA -->
+<div class="cta-block"><div class="cta-inner">
+  <div>
+    <div class="eyebrow"><div class="eyebrow-line" style="background:rgba(255,255,255,.4)"></div><span style="color:rgba(255,255,255,.6)">Join Sudeva</span></div>
+    <h2 class="sec-title">YOUR JOURNEY<br>STARTS HERE</h2>
+    <p class="sec-body" style="color:rgba(255,255,255,.65)">Trials are held across India all year. Talent is the only currency. Apply today — we will come to you.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="openModal()">Apply for Trials</button>
+    <button class="btn-outline-wh" onclick="openModal('scholarship')">Scholarship Enquiry</button>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.4);text-align:center;margin-top:6px">+91 704-205-0239 · <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2a1adacb6a3a1b682b1b7a6a7b4a3ecabac">[email&#160;protected]</a></p>
+  </div>
+</div></div>
+
+<!-- FOOTER HOME -->
+<footer><div class="footer-inner">
+  <div class="footer-top">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div class="nav-logo-crest" style="width:34px;height:34px;flex-shrink:0"></div><span class="footer-brand" style="margin-bottom:0">SUDEVA</span></div>
+      <div class="footer-tag">Believe · Train · Rise</div>
+      <p class="footer-desc">India's largest residential football school. Building champions from grassroots to the global stage since 2014.</p>
+      <p style="font-size:12px;color:rgba(245,245,240,.3);margin-top:18px;line-height:1.8">E-5, 2nd Floor, Defence Colony<br>New Delhi – 110024<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7b4b8b9a3b6b4a397a4a2b3b2a1b6f9beb9">[email&#160;protected]</a></p>
+    </div>
+    <div class="footer-col"><h4>Academy</h4><ul><li onclick="showPage('home')">About Us</li><li onclick="showPage('facilities')">Facilities</li><li onclick="showPage('alumni')">Alumni</li><li>Our Team</li></ul></div>
+    <div class="footer-col"><h4>Programmes</h4><ul><li>U13 Foundation</li><li>U15 Development</li><li>U17 Performance</li><li>U19–U23 Elite</li><li>Girls Programme</li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li onclick="openModal()">Apply for Trials</li><li>Work With Us</li><li>Sponsor / Partner</li><li>Donate</li><li>Media</li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 Sudeva Delhi FC · India's Largest Residential Football School · New Delhi</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/sudevasportsofficial/" target="_blank" class="social-btn">IG</a>
+      <a href="#" class="social-btn">FB</a><a href="#" class="social-btn">YT</a><a href="#" class="social-btn">LI</a>
+    </div>
+  </div>
+</div></footer>
+</div><!-- end page-home -->
+
+
+<!-- ██████████ PAGE: FACILITIES ██████████ -->
+<div class="page" id="page-facilities">
+<div class="page-hero">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>Sudeva Sports Village</span></div>
+  <h1 class="sec-title" style="font-size:clamp(52px,6vw,88px)">WORLD-CLASS<br><span style="color:var(--red)">INFRASTRUCTURE</span></h1>
+  <p class="sec-body">Every detail of Sudeva Sports Village is designed to match the best football academies in the world — because our players deserve nothing less.</p>
+</div>
+
+<!-- GALLERY -->
+<div style="max-width:1400px;margin:0 auto;padding:0 60px 3px">
+  <div class="fac-main-grid">
+    <div class="fac-tile" style="min-height:480px">
+      <div class="fac-img fb1" style="min-height:480px;position:relative">
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.1" viewBox="0 0 400 300" preserveAspectRatio="none"><rect x="40" y="30" width="320" height="240" fill="none" stroke="white" stroke-width="2"/><line x1="200" y1="30" x2="200" y2="270" stroke="white" stroke-width="1.5"/><circle cx="200" cy="150" r="40" fill="none" stroke="white" stroke-width="1.5"/><rect x="40" y="90" width="80" height="120" fill="none" stroke="white" stroke-width="1.5"/><rect x="280" y="90" width="80" height="120" fill="none" stroke="white" stroke-width="1.5"/></svg>
+        <span style="font-size:72px;opacity:.2;position:absolute;">🏟️</span>
+      </div>
+      <div class="fac-overlay"><span class="fac-tag">Main Pitch</span><div class="fac-name">FIFA-STANDARD PLAYING FIELD</div><div class="fac-desc">Full-size natural grass pitch with FIFA-approved dimensions. Official training venue, FIFA U-17 World Cup 2017.</div></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <div class="fac-tile" style="flex:1"><div class="fac-img fb2" style="min-height:238px"><span style="font-size:60px;opacity:.2">🛌</span></div><div class="fac-overlay"><span class="fac-tag">Residence</span><div class="fac-name">RESIDENTIAL CAMPUS</div><div class="fac-desc">Furnished dorms, common rooms, and 24/7 supervision.</div></div></div>
+      <div class="fac-tile" style="flex:1"><div class="fac-img fb3" style="min-height:238px"><span style="font-size:60px;opacity:.2">💪</span></div><div class="fac-overlay"><span class="fac-tag">Strength</span><div class="fac-name">GYM & FITNESS CENTRE</div><div class="fac-desc">Professional S&C facility with qualified coaches.</div></div></div>
+    </div>
+  </div>
+  <div class="fac-row">
+    <div class="fac-tile"><div class="fac-img fb4" style="min-height:280px"><span style="font-size:56px;opacity:.2">🧪</span></div><div class="fac-overlay"><span class="fac-tag">Recovery</span><div class="fac-name">SPORTS MEDICINE & PHYSIO</div><div class="fac-desc">On-site physiotherapy and injury prevention.</div></div></div>
+    <div class="fac-tile"><div class="fac-img fb5" style="min-height:280px"><span style="font-size:56px;opacity:.2">🍽️</span></div><div class="fac-overlay"><span class="fac-tag">Nutrition</span><div class="fac-name">NUTRITION & DINING HALL</div><div class="fac-desc">Nutritionist-designed meal plans for peak performance.</div></div></div>
+    <div class="fac-tile"><div class="fac-img fb6" style="min-height:280px"><span style="font-size:56px;opacity:.2">📚</span></div><div class="fac-overlay"><span class="fac-tag">Education</span><div class="fac-name">ACADEMIC CLASSROOMS</div><div class="fac-desc">Structured schooling integrated with training.</div></div></div>
+  </div>
+</div>
+
+<!-- VIDEO SECTION -->
+<div style="max-width:1400px;margin:0 auto;padding:60px 60px 0">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>Experience the Campus</span></div>
+  <h2 class="sec-title">SEE IT FOR<br>YOURSELF</h2>
+  <div style="height:20px"></div>
+  <div class="vid-grid">
+    <div class="vid-tile" style="background:linear-gradient(135deg,#0a2a0a,#0d350d)">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:.12">🏟️</div>
+      <div class="vid-play"></div>
+      <div class="vid-label"><div class="vid-label-text">Campus & Training Ground Tour</div><div class="vid-sub">4:32 · Walk-through of Sudeva Sports Village</div></div>
+    </div>
+    <div class="vid-tile" style="background:linear-gradient(135deg,#0a1628,#1a2a40)">
+      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px;opacity:.12">🛌</div>
+      <div class="vid-play"></div>
+      <div class="vid-label"><div class="vid-label-text">Life Inside the Residential Academy</div><div class="vid-sub">7:14 · A day in the life of a Sudevan</div></div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:3px">
+    <div class="vid-tile" style="background:linear-gradient(135deg,#201810,#3a2a18)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;opacity:.12">💪</div><div class="vid-play" style="width:48px;height:48px"></div><div class="vid-label"><div class="vid-label-text">Strength & Conditioning</div></div></div>
+    <div class="vid-tile" style="background:linear-gradient(135deg,#0a1a28,#102040)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;opacity:.12">🧘</div><div class="vid-play" style="width:48px;height:48px"></div><div class="vid-label"><div class="vid-label-text">Yoga & Recovery</div></div></div>
+    <div class="vid-tile" style="background:linear-gradient(135deg,#1a0a0a,#3a1010)"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:56px;opacity:.12">🎥</div><div class="vid-play" style="width:48px;height:48px"></div><div class="vid-label"><div class="vid-label-text">Tactical Analysis Room</div></div></div>
+  </div>
+</div>
+
+<!-- FACILITY FEATURES -->
+<div class="sw">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>What We Offer</span></div>
+  <h2 class="sec-title">EVERY DETAIL<br>MATTERS</h2>
+  <div class="fac-feat-grid" style="margin-top:40px">
+    <div class="fac-feat"><div class="fac-feat-icon">⚽</div><div class="fac-feat-title">FIFA-Approved Pitch</div><p class="fac-feat-body">Full-size natural grass playing surface meeting FIFA's international standards.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">💡</div><div class="fac-feat-title">Floodlit Training</div><p class="fac-feat-body">Full floodlighting for evening sessions ensuring maximum hours of quality training.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🎥</div><div class="fac-feat-title">Video Analysis</div><p class="fac-feat-body">Dedicated video analysis suite with professional match and training review software.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🛌</div><div class="fac-feat-title">Residential Boarding</div><p class="fac-feat-body">Safe, comfortable, fully supervised facilities for all scholarship players.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🍎</div><div class="fac-feat-title">Sports Nutrition</div><p class="fac-feat-body">Nutritionist-curated meal plans to support physical development and recovery.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🧬</div><div class="fac-feat-title">Sports Science</div><p class="fac-feat-body">GPS tracking, fitness testing, and injury prevention guided by sports science.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🧘</div><div class="fac-feat-title">Yoga & Mindfulness</div><p class="fac-feat-body">Daily yoga sessions — Vijay Hakari's signature blend of ancient science and modern training.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">📚</div><div class="fac-feat-title">Academic Support</div><p class="fac-feat-body">Structured schooling and tutoring integrated with the training programme.</p></div>
+    <div class="fac-feat"><div class="fac-feat-icon">🏥</div><div class="fac-feat-title">Medical Care</div><p class="fac-feat-body">On-site physio and sports medicine team keeping every player in peak condition.</p></div>
+  </div>
+</div>
+
+<div class="cta-block"><div class="cta-inner">
+  <div>
+    <h2 class="sec-title">WANT TO SEE IT<br>IN PERSON?</h2>
+    <p class="sec-body" style="color:rgba(255,255,255,.65)">We welcome prospective families to visit Sudeva Sports Village and experience the campus first-hand.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="openModal()">Apply for Trials</button>
+    <button class="btn-outline-wh" onclick="openModal('visit')">Request a Campus Visit</button>
+  </div>
+</div></div>
+
+<footer><div class="footer-inner">
+  <div class="footer-bottom" style="padding-top:0">
+    <p class="footer-copy">© 2026 Sudeva Delhi FC · India's Largest Residential Football School · New Delhi</p>
+    <div style="display:flex;gap:20px;align-items:center">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:rgba(245,245,240,.3);cursor:pointer" onclick="showPage('home')">← Back to Home</span>
+      <div class="footer-social"><a href="https://www.instagram.com/sudevasportsofficial/" target="_blank" class="social-btn">IG</a><a href="#" class="social-btn">FB</a><a href="#" class="social-btn">YT</a></div>
+    </div>
+  </div>
+</div></footer>
+</div><!-- end page-facilities -->
+
+
+<!-- ██████████ PAGE: ALUMNI ██████████ -->
+<div class="page" id="page-alumni">
+<div class="page-hero">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>Our Graduates</span></div>
+  <h1 class="sec-title" style="font-size:clamp(52px,6vw,88px)">THE CLASS<br><span style="color:var(--gold)">OF SUDEVA</span></h1>
+  <p class="sec-body">Every player who walked through our gates and went on to represent clubs and country. This is our proudest achievement.</p>
+  <div class="alumni-stats-strip">
+    <div class="as-item"><span class="as-num">80+</span><span class="as-label">Alumni Placed</span></div>
+    <div class="as-item"><span class="as-num">12+</span><span class="as-label">Clubs Worldwide</span></div>
+    <div class="as-item"><span class="as-num">8+</span><span class="as-label">National Players</span></div>
+  </div>
+</div>
+<div class="sw" style="padding-top:0">
+  <div class="alumni-controls">
+    <select class="year-select" id="yearSelect" onchange="renderAlumni(this.value)">
+      <option value="2024">Class of 2024</option>
+      <option value="2023">Class of 2023</option>
+      <option value="2022">Class of 2022</option>
+      <option value="2021">Class of 2021</option>
+      <option value="2020">Class of 2020</option>
+      <option value="2019">Class of 2019</option>
+      <option value="2018">Class of 2018</option>
+      <option value="2017">Class of 2017</option>
+    </select>
+    <div>
+      <div class="alumni-year-title" id="alumniYearTitle">2024</div>
+      <div class="alumni-count" id="alumniCount">8 Players · Graduating Class</div>
+    </div>
+  </div>
+  <div class="alumni-grid" id="alumniGrid"></div>
+</div>
+<div class="cta-block" style="margin-top:60px"><div class="cta-inner">
+  <div>
+    <h2 class="sec-title">JOIN THE NEXT<br>GRADUATING CLASS</h2>
+    <p class="sec-body" style="color:rgba(255,255,255,.65)">Your name could be on this page. Apply for the trials today.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="openModal()">Apply for Trials</button>
+  </div>
+</div></div>
+<footer><div class="footer-inner">
+  <div class="footer-bottom" style="padding-top:0">
+    <p class="footer-copy">© 2026 Sudeva Delhi FC · India's Largest Residential Football School</p>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:rgba(245,245,240,.3);cursor:pointer" onclick="showPage('home')">← Back to Home</span>
+  </div>
+</div></footer>
+</div><!-- end page-alumni -->
+
+
+<!-- ██████████ PAGE: TEAM ██████████ -->
+<div class="page" id="page-team">
+<div class="page-hero">
+  <div class="eyebrow"><div class="eyebrow-line"></div><span>The People Behind the Academy</span></div>
+  <h1 class="sec-title" style="font-size:clamp(52px,6vw,88px)">SUDEVA'S<br><span style="color:var(--gold)">TEAM</span></h1>
+  <p class="sec-body">World-class coaches, educators, physiotherapists, and support staff — united by a single mission: to give India's most talented players the best possible start.</p>
+</div>
+
+<!-- TABS -->
+<div class="sw" style="padding-top:0" id="team-section">
+  <div class="team-tabs">
+    <button class="team-tab active" onclick="switchTeamTab('coaches',this)">Coaching Staff</button>
+    <button class="team-tab" onclick="switchTeamTab('management',this)">Management</button>
+    <button class="team-tab" onclick="switchTeamTab('education',this)">Academic & Support</button>
+  </div>
+
+  <!-- COACHES -->
+  <div id="team-coaches">
+    <span class="team-dept-label">COACHING STAFF</span>
+    <div class="team-grid" id="coaches-grid">
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0d1e35 0%,#1a3360 100%);font-size:64px;display:flex;align-items:center;justify-content:center">👨‍🏫</div></div><div class="team-card-body"><div class="team-name">Vijay Hakari</div><div class="team-role">Co-Founder & Head of Philosophy</div><p class="team-bio">Environmentalist and visionary co-founder who integrates yoga, mindfulness, and ecological thinking into Sudeva's training ethos.</p><div class="team-quals"><span class="team-qual">Yoga Expert</span><span class="team-qual">Environmentalist</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a0a0a 0%,#3a1010 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🧑‍🏫</div></div><div class="team-card-body"><div class="team-name">Rajan Nair</div><div class="team-role">Head Coach — Elite Programme</div><p class="team-bio">UEFA B Licensed coach with 12 years of experience developing youth talent across India and Southeast Asia.</p><div class="team-quals"><span class="team-qual">UEFA B</span><span class="team-qual">AIFF C</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0a1a0a 0%,#153020 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🏃</div></div><div class="team-card-body"><div class="team-name">Suresh Thapa</div><div class="team-role">U17 Head Coach</div><p class="team-bio">Former I-League player turned coach, specialising in high-press tactical systems and transition play.</p><div class="team-quals"><span class="team-qual">AIFF B Licence</span><span class="team-qual">Ex I-League</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0f0a1a 0%,#1a1040 100%);font-size:64px;display:flex;align-items:center;justify-content:center">⚽</div></div><div class="team-card-body"><div class="team-name">Amelia Fernandez</div><div class="team-role">Head Coach — Girls Programme</div><p class="team-bio">Pioneering women's football development in India. Former national team player with international coaching experience.</p><div class="team-quals"><span class="team-qual">AFC A</span><span class="team-qual">India WNT</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a2010 0%,#304018 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🏋️</div></div><div class="team-card-body"><div class="team-name">Gurpreet Sandhu</div><div class="team-role">Strength & Conditioning Coach</div><p class="team-bio">Sports science specialist focused on athletic development, injury prevention, and GPS-based performance monitoring.</p><div class="team-quals"><span class="team-qual">MSc Sports Science</span><span class="team-qual">NSCA</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a0a1a 0%,#301a40 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🥅</div></div><div class="team-card-body"><div class="team-name">David Okonkwo</div><div class="team-role">Goalkeeping Coach</div><p class="team-bio">Former professional goalkeeper from Nigeria. Brought to Sudeva through the VfB Stuttgart partnership to raise goalkeeper standards.</p><div class="team-quals"><span class="team-qual">CAF B Licence</span><span class="team-qual">Pro GK</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a1a0a 0%,#302a10 100%);font-size:64px;display:flex;align-items:center;justify-content:center">📊</div></div><div class="team-card-body"><div class="team-name">Kunal Mehta</div><div class="team-role">Video & Tactical Analyst</div><p class="team-bio">Performance analysis specialist using Hudl and GPS tracking to deliver data-driven feedback to players and coaches.</p><div class="team-quals"><span class="team-qual">Sports Analytics</span><span class="team-qual">Hudl Certified</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0a1a20 0%,#103030 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🧘</div></div><div class="team-card-body"><div class="team-name">Priti Sharma</div><div class="team-role">Yoga & Mindfulness Coach</div><p class="team-bio">Certified yoga instructor who leads daily morning practice for all academy players, building mental resilience alongside physical flexibility.</p><div class="team-quals"><span class="team-qual">RYT 500</span><span class="team-qual">Sports Yoga</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- MANAGEMENT -->
+  <div id="team-management" style="display:none">
+    <span class="team-dept-label">MANAGEMENT & ADMINISTRATION</span>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0d1e35 0%,#C8102E22 100%);font-size:64px;display:flex;align-items:center;justify-content:center">👨‍💼</div></div><div class="team-card-body"><div class="team-name">Anuj Gupta</div><div class="team-role">Co-Founder & Managing Director</div><p class="team-bio">Solicitor (England & Wales), visionary founder who left a legal career to build India's most ambitious football institution from the ground up.</p><div class="team-quals"><span class="team-qual">Solicitor (Eng)</span><span class="team-qual">Co-Founder</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a1628 0%,#2d1a40 100%);font-size:64px;display:flex;align-items:center;justify-content:center">📋</div></div><div class="team-card-body"><div class="team-name">Neha Kapoor</div><div class="team-role">Academy Director</div><p class="team-bio">Oversees all day-to-day operations of the academy including player welfare, admissions, and programme scheduling.</p><div class="team-quals"><span class="team-qual">MBA Sports Mgmt</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0a2020 0%,#103030 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🌍</div></div><div class="team-card-body"><div class="team-name">Rajiv Menon</div><div class="team-role">Head of Scouting</div><p class="team-bio">Travels 60–75 days annually across 25+ states identifying raw talent in underserved regions. The backbone of our grassroots pipeline.</p><div class="team-quals"><span class="team-qual">Pan-India Scout</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#201810 0%,#3a2a18 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🤝</div></div><div class="team-card-body"><div class="team-name">Simran Bhatia</div><div class="team-role">Partnerships & Sponsorships</div><p class="team-bio">Manages relationships with HCL Foundation, ONGC, Hindalco, and international partners including VfB Stuttgart.</p><div class="team-quals"><span class="team-qual">Corporate Relations</span></div></div></div>
+    </div>
+  </div>
+
+  <!-- EDUCATION & SUPPORT -->
+  <div id="team-education" style="display:none">
+    <span class="team-dept-label">ACADEMIC & SUPPORT STAFF</span>
+    <div class="team-grid">
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0a1628 0%,#1a2a40 100%);font-size:64px;display:flex;align-items:center;justify-content:center">📚</div></div><div class="team-card-body"><div class="team-name">Sunita Rao</div><div class="team-role">Head of Academics</div><p class="team-bio">Oversees the integrated education programme, ensuring all residential players receive quality schooling alongside their football training.</p><div class="team-quals"><span class="team-qual">M.Ed</span><span class="team-qual">CBSE Trained</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#0a2a0a 0%,#155215 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🏥</div></div><div class="team-card-body"><div class="team-name">Dr. Arjun Pillai</div><div class="team-role">Team Physician & Sports Medicine</div><p class="team-bio">MBBS with sports medicine specialisation. Provides medical care, injury assessment, and long-term player health management.</p><div class="team-quals"><span class="team-qual">MBBS</span><span class="team-qual">Sports Medicine</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a0a0a 0%,#3a1010 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🧪</div></div><div class="team-card-body"><div class="team-name">Pooja Mathur</div><div class="team-role">Physiotherapist</div><p class="team-bio">Handles daily physiotherapy, rehabilitation protocols, and pre/post-training recovery for all age groups.</p><div class="team-quals"><span class="team-qual">BPT</span><span class="team-qual">Sports Physio</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#201a0a 0%,#40341a 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🍎</div></div><div class="team-card-body"><div class="team-name">Shreya Bansal</div><div class="team-role">Sports Nutritionist</div><p class="team-bio">Designs personalised meal plans and nutrition education for players, supporting performance, recovery, and healthy development.</p><div class="team-quals"><span class="team-qual">MSc Nutrition</span><span class="team-qual">Sports RD</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#1a2010 0%,#2a3020 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🧠</div></div><div class="team-card-body"><div class="team-name">Vikram Joshi</div><div class="team-role">Sports Psychologist</div><p class="team-bio">Works with players on mental resilience, performance anxiety, focus, and wellbeing — particularly for players relocating from remote regions.</p><div class="team-quals"><span class="team-qual">MSc Psych</span><span class="team-qual">CBT Certified</span></div></div></div>
+      <div class="team-card"><div class="team-card-photo"><div class="team-card-img" style="background:linear-gradient(160deg,#10181a 0%,#183040 100%);font-size:64px;display:flex;align-items:center;justify-content:center">🏠</div></div><div class="team-card-body"><div class="team-name">Meena Devi</div><div class="team-role">Hostel Superintendent</div><p class="team-bio">Ensures the residential environment is safe, clean, and nurturing. Acts as a parent figure for young players living away from home.</p><div class="team-quals"><span class="team-qual">Child Welfare</span></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- JOIN US / CAREERS -->
+<div style="background:var(--navy-mid);margin-top:4px">
+  <div class="sw">
+    <div class="eyebrow"><div class="eyebrow-line"></div><span>Work With Us</span></div>
+    <h2 class="sec-title">JOIN THE<br><span style="color:var(--red)">SUDEVA FAMILY</span></h2>
+    <p class="sec-body">We are always looking for passionate, talented individuals to join our team. If you believe in the mission of Indian football and want to make a real difference, we want to hear from you.</p>
+    <div class="jobs-grid" id="jobs-grid">
+      <div class="job-card"><div class="job-dept">Coaching</div><div class="job-title">Assistant Coach — U15 Programme</div><div class="job-meta"><span>📍 New Delhi</span><span>⏱ Full Time</span><span>🎽 On-site</span></div><p class="job-desc">Support the U15 head coach in daily training sessions, match preparation, and player development. AIFF C Licence minimum required.</p><button class="job-apply" onclick="openJobModal('Assistant Coach — U15 Programme')">Apply for this role →</button></div>
+      <div class="job-card"><div class="job-dept">Sports Science</div><div class="job-title">Performance Analyst</div><div class="job-meta"><span>📍 New Delhi</span><span>⏱ Full Time</span><span>🎽 On-site</span></div><p class="job-desc">Use GPS, video, and data tools to produce tactical and physical reports for coaches. Experience with Hudl or similar platforms preferred.</p><button class="job-apply" onclick="openJobModal('Performance Analyst')">Apply for this role →</button></div>
+      <div class="job-card"><div class="job-dept">Education</div><div class="job-title">Maths & Science Teacher</div><div class="job-meta"><span>📍 New Delhi</span><span>⏱ Full Time</span><span>📚 Academic</span></div><p class="job-desc">Teach CBSE Maths and Science to residential players (Grades 6–10). Patience and an understanding of athlete schedules essential.</p><button class="job-apply" onclick="openJobModal('Maths & Science Teacher')">Apply for this role →</button></div>
+      <div class="job-card"><div class="job-dept">Scouting</div><div class="job-title">Regional Scout — South India</div><div class="job-meta"><span>📍 Remote / Travel</span><span>⏱ Part Time</span><span>🌍 Field Based</span></div><p class="job-desc">Identify and evaluate talented players aged 10–18 across Karnataka, Kerala, Tamil Nadu, and Andhra Pradesh. Extensive travel required.</p><button class="job-apply" onclick="openJobModal('Regional Scout — South India')">Apply for this role →</button></div>
+      <div class="job-card"><div class="job-dept">Medical</div><div class="job-title">Sports Physiotherapist</div><div class="job-meta"><span>📍 New Delhi</span><span>⏱ Full Time</span><span>🏥 On-site</span></div><p class="job-desc">Provide daily physiotherapy support to all academy players. BPT with minimum 2 years sports experience. Residential position available.</p><button class="job-apply" onclick="openJobModal('Sports Physiotherapist')">Apply for this role →</button></div>
+      <div class="job-card" style="border-left-color:var(--gold);background:rgba(201,168,76,.04)"><div class="job-dept" style="color:var(--gold)">Open Application</div><div class="job-title">Don't See Your Role?</div><div class="job-meta"><span>📍 Flexible</span></div><p class="job-desc">Send us an open application. If you're exceptional at what you do and believe in our mission, we'd love to hear from you regardless of a listed vacancy.</p><button class="job-apply" onclick="openJobModal('Open Application')">Send Open Application →</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-block"><div class="cta-inner">
+  <div>
+    <h2 class="sec-title">SHAPE THE FUTURE<br>OF INDIAN FOOTBALL</h2>
+    <p class="sec-body" style="color:rgba(255,255,255,.65)">Whether you coach, teach, heal, or analyse — there is a place for you at Sudeva.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white" onclick="openJobModal('Open Application')">Apply to Join Our Team</button>
+    <button class="btn-outline-wh" onclick="openModal()">Player Trials →</button>
+  </div>
+</div></div>
+
+<footer><div class="footer-inner">
+  <div class="footer-bottom" style="padding-top:0">
+    <p class="footer-copy">© 2026 Sudeva Delhi FC · India's Largest Residential Football School</p>
+    <span style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1px;color:rgba(245,245,240,.3);cursor:pointer" onclick="showPage('home')">← Back to Home</span>
+  </div>
+</div></footer>
+</div><!-- end page-team -->
+
+
+<!-- ██████████ JOB MODAL ██████████ -->
+<div class="modal-overlay" id="jobModalOverlay" onclick="closeJobOut(event)">
+  <div class="modal-box" id="jobModalBox" style="max-width:640px">
+    <div class="modal-header">
+      <div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:4px">Apply for</div>
+        <div class="modal-title" id="jobModalTitle">Role Name</div>
+      </div>
+      <button class="modal-close" onclick="closeJobModal()">✕</button>
+    </div>
+    <div class="mform active" id="job-form">
+      <div class="form-row">
+        <div class="fg"><label>Full Name *</label><input type="text" placeholder="Your full name"></div>
+        <div class="fg"><label>Email Address *</label><input type="email" placeholder="your@email.com"></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Phone Number *</label><input type="tel" placeholder="+91 00000 00000"></div>
+        <div class="fg"><label>Current Location</label><input type="text" placeholder="City, State"></div>
+      </div>
+      <div class="fg"><label>Current Role / Organisation</label><input type="text" placeholder="Where are you currently working?"></div>
+      <div class="fg"><label>Years of Relevant Experience *</label>
+        <select><option>Select</option><option>0–1 years</option><option>2–4 years</option><option>5–10 years</option><option>10+ years</option></select>
+      </div>
+      <div class="fg"><label>Relevant Qualifications / Licences</label><input type="text" placeholder="e.g. UEFA B, BPT, MSc Sports Science"></div>
+      <div class="fg"><label>Cover Letter / Why Sudeva? *</label><textarea placeholder="Tell us why you want to work at Sudeva, what you'd bring to the team, and what excites you about this role..."></textarea></div>
+      <div class="fg"><label>LinkedIn / Portfolio URL (optional)</label><input type="url" placeholder="https://linkedin.com/in/..."></div>
+      <p class="fnote">We review all applications personally. Shortlisted candidates will be contacted within 10 working days.</p>
+      <button class="fsub" onclick="submitJobForm()">Submit Application →</button>
+      <div class="fsuccess" id="success-job">
+        <div class="fsuccess-icon">🎯</div>
+        <div class="fsuccess-title">Application Sent!</div>
+        <p class="fsuccess-body">Thank you for applying to join the Sudeva team. We will review your application carefully and reach out to shortlisted candidates within 10 working days.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOut(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <div class="modal-title">Join Sudeva</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('trials')">Apply for Trials</button>
+      <button class="modal-tab" onclick="switchTab('scholarship')">Scholarship</button>
+      <button class="modal-tab" onclick="switchTab('visit')">Campus Visit</button>
+    </div>
+    <!-- TRIALS -->
+    <div class="mform active" id="tab-trials">
+      <p class="fnote">Our scouting team will contact you within 5 working days to schedule a trial near you. Trials are held across India throughout the year.</p>
+      <div class="form-row"><div class="fg"><label>Player's Full Name *</label><input type="text" placeholder="e.g. Rahul Singh"></div><div class="fg"><label>Date of Birth *</label><input type="date"></div></div>
+      <div class="form-row"><div class="fg"><label>Age Group *</label><select><option>Select Age Group</option><option>U13 (Age 9–13)</option><option>U15 (Age 13–15)</option><option>U17 (Age 15–17)</option><option>U19 (Age 17–19)</option><option>U21 (Age 19–21)</option><option>U23 (Age 21–23)</option></select></div><div class="fg"><label>Playing Position *</label><select><option>Select Position</option><option>Goalkeeper</option><option>Centre-back</option><option>Full-back / Wing-back</option><option>Defensive Midfielder</option><option>Central Midfielder</option><option>Attacking Midfielder</option><option>Winger</option><option>Striker / Centre-forward</option></select></div></div>
+      <div class="form-row"><div class="fg"><label>City / State *</label><input type="text" placeholder="e.g. Imphal, Manipur"></div><div class="fg"><label>Contact Number *</label><input type="tel" placeholder="+91 00000 00000"></div></div>
+      <div class="fg"><label>Parent / Guardian Name *</label><input type="text" placeholder="Parent or guardian's full name"></div>
+      <div class="fg"><label>Current Club / School (if any)</label><input type="text" placeholder="Leave blank if none"></div>
+      <div class="fg"><label>Tell us about the player</label><textarea placeholder="Playing experience, achievements, tournaments played..."></textarea></div>
+      <p class="fnote" style="color:rgba(201,168,76,.7)">⭐ Scholarships are fully funded — accommodation, food, coaching, and education included. Financial background is never a barrier.</p>
+      <button class="fsub" onclick="submitForm('trials')">Submit Trial Application →</button>
+      <div class="fsuccess" id="success-trials"><div class="fsuccess-icon">✅</div><div class="fsuccess-title">Application Received!</div><p class="fsuccess-body">Our scouting team will review your application and contact you within 5 working days to schedule a trial. We look forward to seeing you play.</p></div>
+    </div>
+    <!-- SCHOLARSHIP -->
+    <div class="mform" id="tab-scholarship">
+      <p class="fnote">Sudeva provides full scholarships regardless of financial background — training, residential accommodation, food, education, and all equipment included.</p>
+      <div class="form-row"><div class="fg"><label>Player's Full Name *</label><input type="text" placeholder="Full name"></div><div class="fg"><label>Age *</label><input type="number" placeholder="Age" min="9" max="23"></div></div>
+      <div class="form-row"><div class="fg"><label>State / Region *</label><input type="text" placeholder="e.g. Mizoram"></div><div class="fg"><label>Contact Number *</label><input type="tel" placeholder="+91 00000 00000"></div></div>
+      <div class="fg"><label>Background & Story</label><textarea placeholder="Tell us about the player's background, current situation, and why they deserve this opportunity..."></textarea></div>
+      <button class="fsub" onclick="submitForm('scholarship')">Submit Scholarship Enquiry →</button>
+      <div class="fsuccess" id="success-scholarship"><div class="fsuccess-icon">🌟</div><div class="fsuccess-title">Enquiry Submitted!</div><p class="fsuccess-body">We have received your scholarship enquiry. Our team will be in touch shortly. Every talented player deserves their shot — we will make sure they get it.</p></div>
+    </div>
+    <!-- VISIT -->
+    <div class="mform" id="tab-visit">
+      <p class="fnote">We welcome prospective players and their families to visit Sudeva Sports Village in Delhi. See the grounds, residential facilities, and meet our coaching team.</p>
+      <div class="form-row"><div class="fg"><label>Your Name *</label><input type="text" placeholder="Full name"></div><div class="fg"><label>Relation to Player *</label><select><option>Select</option><option>Parent</option><option>Guardian</option><option>Player (Self)</option><option>Agent / Scout</option><option>Journalist / Media</option><option>Other</option></select></div></div>
+      <div class="form-row"><div class="fg"><label>Preferred Date *</label><input type="date"></div><div class="fg"><label>Contact Number *</label><input type="tel" placeholder="+91 00000 00000"></div></div>
+      <div class="fg"><label>Email Address *</label><input type="email" placeholder="email@example.com"></div>
+      <div class="fg"><label>Purpose of Visit</label><textarea placeholder="What would you like to see or discuss during your visit?"></textarea></div>
+      <button class="fsub" onclick="submitForm('visit')">Request Campus Visit →</button>
+      <div class="fsuccess" id="success-visit"><div class="fsuccess-icon">🏟️</div><div class="fsuccess-title">Visit Requested!</div><p class="fsuccess-body">We will confirm your campus visit date within 2 working days. We look forward to welcoming you to Sudeva Sports Village in New Delhi.</p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// PAGE NAV
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const n=document.getElementById('nav-'+name);
+  if(n)n.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='alumni')renderAlumni('2024');
+  if(name==='team'){
+    switchTeamTab('coaches',document.querySelector('.team-tab.active')||document.querySelector('.team-tab'));
+  }
+}
+function scrollTo2(id){
+  showPage('home');
+  setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},150);
+}
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>40));
+
+// MODAL
+function openModal(tab){
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(tab)switchTab(tab);
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeModalOut(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+function switchTab(tab){
+  const tabs=['trials','scholarship','visit'];
+  document.querySelectorAll('.modal-tab').forEach((t,i)=>t.classList.toggle('active',tabs[i]===tab));
+  document.querySelectorAll('.mform').forEach(f=>f.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+function submitForm(tab){
+  const form=document.getElementById('tab-'+tab);
+  form.querySelectorAll('input,select,textarea,button.fsub,.fnote').forEach(el=>el.style.display='none');
+  document.getElementById('success-'+tab).style.display='block';
+}
+
+// ALUMNI DATA
+const alumniData={
+  2024:[
+    {name:'Arjun Thapa',pos:'Midfielder',club:'Sudeva Delhi FC',nat:true,emoji:'⚽'},
+    {name:'Roshan Lal',pos:'Striker',club:'Churchill Brothers FC',nat:false,emoji:'🏃'},
+    {name:'Pawan Singh',pos:'Goalkeeper',club:'FC Goa Academy',nat:false,emoji:'🥅'},
+    {name:'Dinesh Chhetri',pos:'Defender',club:'East Bengal FC',nat:true,emoji:'🛡️'},
+    {name:'Lalrinzuala',pos:'Winger',club:'Aizawl FC',nat:false,emoji:'💨'},
+    {name:'Ravi Yadav',pos:'Midfielder',club:'Delhi FC',nat:false,emoji:'⚙️'},
+    {name:'Sanjit Baishnab',pos:'Full-back',club:'Minerva Punjab',nat:false,emoji:'🏅'},
+    {name:'Priya Sharma',pos:'Forward (Girls)',club:'India U20 National',nat:true,emoji:'🌟'},
+  ],
+  2023:[
+    {name:'Korou Singh',pos:'Midfielder',club:'NorthEast United FC',nat:true,emoji:'⚡'},
+    {name:'Aman Preet',pos:'Winger',club:'Punjab FC',nat:false,emoji:'💨'},
+    {name:'Gyanesh Kumar',pos:'Striker',club:'Gokulam Kerala',nat:false,emoji:'🎯'},
+    {name:'Lalbiaksanga',pos:'Midfielder',club:'Aizawl FC',nat:false,emoji:'⚽'},
+    {name:'Ranjit Basumatary',pos:'Defender',club:'Neroca FC',nat:false,emoji:'🛡️'},
+    {name:'Vikrant Shinde',pos:'Goalkeeper',club:'Bengaluru FC Res.',nat:false,emoji:'🥅'},
+  ],
+  2022:[
+    {name:'Shubho Paul',pos:'Midfielder',club:'FC Bayern Munich (youth)',nat:true,emoji:'🌟'},
+    {name:'Thoi Singh',pos:'Striker',club:'Sudeva Delhi FC',nat:true,emoji:'🎯'},
+    {name:'Bishal Gogoi',pos:'Winger',club:'Assam FC',nat:false,emoji:'💨'},
+    {name:'Ranjit Oraon',pos:'Defender',club:'Jamshedpur FC Res.',nat:false,emoji:'🛡️'},
+    {name:'Naorem Mahesh',pos:'Midfielder',club:'NorthEast United FC',nat:false,emoji:'⚽'},
+    {name:'Lalawmpuia',pos:'Forward',club:'Aizawl FC',nat:false,emoji:'🏃'},
+    {name:'Priyanshu Raj',pos:'Full-back',club:'Delhi FC',nat:false,emoji:'⚙️'},
+  ],
+  2021:[
+    {name:'Lalbiakliana',pos:'Midfielder',club:'Sudeva Delhi FC',nat:true,emoji:'⚽'},
+    {name:'Thanglalsaun Gangte',pos:'Striker',club:'NEROCA FC',nat:true,emoji:'🎯'},
+    {name:'Gurpreet S. Gill',pos:'Goalkeeper',club:'Punjab FC',nat:false,emoji:'🥅'},
+    {name:'Ankit Sharma',pos:'Midfielder',club:'Roundglass Punjab',nat:false,emoji:'⚙️'},
+    {name:'Seiminlen Doungel',pos:'Winger',club:'Aizawl FC',nat:false,emoji:'💨'},
+    {name:'Bishnu Chauhan',pos:'Defender',club:'Mohammedan SC',nat:false,emoji:'🛡️'},
+  ],
+  2020:[
+    {name:'Prabir Das',pos:'Right-back',club:'ATK Mohun Bagan',nat:true,emoji:'⚡'},
+    {name:'Shaiborlang Kharpan',pos:'Midfielder',club:'Sudeva Delhi FC',nat:true,emoji:'⚽'},
+    {name:'Lalchungnunga',pos:'Defender',club:'Aizawl FC',nat:false,emoji:'🛡️'},
+    {name:'Sachin Suresh',pos:'Striker',club:'Gokulam Kerala',nat:false,emoji:'🎯'},
+    {name:'Ravi Bahadur',pos:'Midfielder',club:'Delhi FC',nat:false,emoji:'⚙️'},
+  ],
+  2019:[
+    {name:'Johnson Singh',pos:'Midfielder',club:'Minerva Punjab',nat:false,emoji:'⚽'},
+    {name:'Premjit Lal',pos:'Striker',club:'Churchill Brothers',nat:false,emoji:'🎯'},
+    {name:'Roshan Thapa',pos:'Winger',club:'Neroca FC',nat:false,emoji:'💨'},
+    {name:'Devid Singh',pos:'Goalkeeper',club:'TRAU FC',nat:false,emoji:'🥅'},
+  ],
+  2018:[
+    {name:'Bikash Yumnam',pos:'Midfielder',club:'Minerva Punjab FC',nat:true,emoji:'⚽'},
+    {name:'Gurjant Singh',pos:'Forward',club:'Mumbai City FC',nat:true,emoji:'🌟'},
+    {name:'Amarjit Singh Kiyam',pos:'Defensive Mid',club:'Mumbai City FC',nat:true,emoji:'🛡️'},
+    {name:'Aniket Jadhav',pos:'Winger',club:'FC Goa',nat:false,emoji:'💨'},
+    {name:'Chinglensana Singh',pos:'Defender',club:'Mumbai City FC',nat:true,emoji:'⚙️'},
+  ],
+  2017:[
+    {name:'Komal Thatal',pos:'Midfielder',club:'NorthEast United',nat:true,emoji:'⚡'},
+    {name:'Boris Singh Thangjam',pos:'Striker',club:'Minerva Punjab',nat:true,emoji:'🎯'},
+    {name:'Jeakson Singh Thounaojam',pos:'Midfielder',club:'Kerala Blasters',nat:true,emoji:'🌟'},
+    {name:'Ninthoinganba Meetei',pos:'Defender',club:'NEROCA FC',nat:false,emoji:'🛡️'},
+  ],
+};
+
+function renderAlumni(year){
+  const players=alumniData[year]||[];
+  document.getElementById('alumniYearTitle').textContent=year;
+  document.getElementById('alumniCount').textContent=players.length+' Players · Graduating Class';
+  document.getElementById('alumniGrid').innerHTML=players.map(p=>`
+    <div class="alumni-card">
+      <div class="alumni-card-photo">
+        ${p.photo?`<img src="${p.photo}" alt="${p.name}">`:`<span>${p.emoji}</span>`}
+      </div>
+      <div class="alumni-card-body">
+        <div class="alumni-name">${p.name}</div>
+        <div class="alumni-pos">${p.pos}</div>
+        <div class="alumni-club"><div class="alumni-badge">S</div><div class="alumni-club-name">${p.club}</div></div>
+        ${p.nat?'<div class="alumni-nat">🇮🇳 National Team</div>':''}
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('.alumni-card').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(20px)';
+    el.style.transition='opacity .5s ease,transform .5s ease';
+    observer.observe(el);
+  });
+}
+
+// ── TEAM TABS ──
+function switchTeamTab(tab, btn) {
+  document.querySelectorAll('.team-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('team-coaches').style.display = tab==='coaches'?'block':'none';
+  document.getElementById('team-management').style.display = tab==='management'?'block':'none';
+  document.getElementById('team-education').style.display = tab==='education'?'block':'none';
+}
+
+// ── JOB MODAL ──
+function openJobModal(role) {
+  document.getElementById('jobModalTitle').textContent = role;
+  document.getElementById('jobModalOverlay').classList.add('open');
+  document.getElementById('job-form').style.display='block';
+  document.getElementById('success-job').style.display='none';
+  document.getElementById('job-form').querySelectorAll('input,textarea,select').forEach(el=>el.value='');
+  document.body.style.overflow='hidden';
+}
+function closeJobModal(){document.getElementById('jobModalOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeJobOut(e){if(e.target===document.getElementById('jobModalOverlay'))closeJobModal();}
+function submitJobForm(){
+  document.getElementById('job-form').querySelectorAll('input,select,textarea,.fnote,button.fsub').forEach(el=>el.style.display='none');
+  document.getElementById('success-job').style.display='block';
+}
+
+// Scroll animations
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(el=>{
+    if(el.isIntersecting){
+      el.target.style.opacity='1';
+      el.target.style.transform='translateY(0)';
+      observer.unobserve(el.target);
+    }
+  });
+},{threshold:.1});
+
+document.querySelectorAll('.ach-card,.prog-card,.pillar,.impact-item,.fac-feat,.yt-card,.fac-tile,.partner-logo,.team-card,.job-card').forEach(el=>{
+  el.style.opacity='0';el.style.transform='translateY(20px)';
+  el.style.transition='opacity .6s ease,transform .6s ease';
+  observer.observe(el);
+});
+
+// Init
+showPage('home');
+</script>
+
+<!-- Firebase: reads live data into the website -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, collection, getDoc, getDocs, onSnapshot }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const FB = {
+  apiKey:"AIzaSyAQV_GWmz8ZLD7mXMQ4HtCigHr8h0ZvPpg",
+  authDomain:"sudeva-site.firebaseapp.com",
+  projectId:"sudeva-site",
+  storageBucket:"sudeva-site.firebasestorage.app",
+  messagingSenderId:"48593488679",
+  appId:"1:48593488679:web:9a97a9d46dc4ca15ea3702"
+};
+const app = initializeApp(FB);
+const db  = getFirestore(app);
+
+// ── Read alumni from Firebase and override local data ──
+async function loadAlumniFromFirebase() {
+  try {
+    const snap = await getDocs(collection(db,'alumni'));
+    if(!snap.empty) {
+      snap.forEach(d => {
+        const yr = d.id;
+        const players = d.data().players || [];
+        // override local alumniData
+        if(window.alumniData) window.alumniData[yr] = players;
+      });
+      // re-render if alumni page is active
+      const sel = document.getElementById('yearSelect');
+      if(sel) { window.renderAlumni(sel.value); }
+    }
+  } catch(e) { console.log('Firebase alumni read:', e.message); }
+}
+
+// ── Listen for real-time changes to alumni ──
+onSnapshot(collection(db,'alumni'), snap => {
+  snap.forEach(d => {
+    if(window.alumniData) window.alumniData[d.id] = d.data().players || [];
+  });
+  // re-render if alumni page is open
+  const sel = document.getElementById('yearSelect');
+  if(sel && document.getElementById('page-alumni').classList.contains('active')) {
+    window.renderAlumni(sel.value);
+  }
+});
+
+// ── Read team members from Firebase and update the team page ──
+async function loadTeamFromFirebase() {
+  try {
+    const depts = ['coaches','management','education'];
+    for(const dept of depts) {
+      const s = await getDoc(doc(db,'team',dept));
+      if(s.exists()) {
+        window._fbTeam = window._fbTeam || {};
+        window._fbTeam[dept] = s.data().members || [];
+      }
+    }
+    // Also load job listings
+    const js = await getDoc(doc(db,'team','jobs'));
+    if(js.exists()) window._fbJobs = js.data().listings || [];
+
+    rebuildTeamPage();
+  } catch(e) { console.log('Firebase team read:', e.message); }
+}
+
+// ── Rebuild team cards with Firebase data (photos etc.) ──
+function rebuildTeamPage() {
+  if(!window._fbTeam) return;
+  const grids = { coaches:'coaches-grid', management:null, education:null };
+  // Update coaches grid if it exists
+  const cGrid = document.getElementById('coaches-grid');
+  if(cGrid && window._fbTeam.coaches) {
+    const members = window._fbTeam.coaches.filter(m => m.active !== false);
+    cGrid.innerHTML = members.map(m => buildTeamCard(m)).join('');
+  }
+  // Rebuild management and education sections
+  ['team-management','team-education'].forEach(secId => {
+    const sec = document.getElementById(secId);
+    if(!sec) return;
+    const dept = secId === 'team-management' ? 'management' : 'education';
+    const grid = sec.querySelector('.team-grid');
+    if(grid && window._fbTeam[dept]) {
+      const members = window._fbTeam[dept].filter(m => m.active !== false);
+      grid.innerHTML = members.map(m => buildTeamCard(m)).join('');
+    }
+  });
+  // Rebuild job listings
+  if(window._fbJobs) rebuildJobListings(window._fbJobs);
+}
+
+function buildTeamCard(m) {
+  const bgColors = ['#0d1e35,#1a3360','#1a0a0a,#3a1010','#0a1a0a,#153020','#0f0a1a,#1a1040','#1a2010,#304018','#1a0a1a,#301a40','#1a1a0a,#302a10','#0a1a20,#103030'];
+  const bg = bgColors[Math.floor(Math.random()*bgColors.length)];
+  return `<div class="team-card">
+    <div class="team-card-photo">
+      <div class="team-card-img" style="background:linear-gradient(160deg,${bg});">
+        ${m.photo
+          ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">`
+          : `<span style="font-size:64px;opacity:.2">👤</span>`}
+      </div>
+    </div>
+    <div class="team-card-body">
+      <div class="team-name">${m.name}</div>
+      <div class="team-role">${m.role}</div>
+      <p class="team-bio">${m.bio||''}</p>
+      ${m.quals?`<div class="team-quals">${m.quals.split(',').map(q=>`<span class="team-qual">${q.trim()}</span>`).join('')}</div>`:''}
+    </div></div>`;
+}
+
+function rebuildJobListings(jobs) {
+  const grid = document.getElementById('jobs-grid');
+  if(!grid) return;
+  const activeJobs = jobs.filter(j => j.active !== false);
+  if(!activeJobs.length) return;
+  grid.innerHTML = activeJobs.map(j => `
+    <div class="job-card">
+      <div class="job-dept">${j.dept||'General'}</div>
+      <div class="job-title">${j.title}</div>
+      <div class="job-meta"><span>📍 ${j.location||'New Delhi'}</span><span>⏱ ${j.type||'Full Time'}</span></div>
+      <p class="job-desc">${j.desc||''}</p>
+      <button class="job-apply" onclick="openJobModal('${j.title.replace(/'/g,"\\'")}')">Apply for this role →</button>
+    </div>`).join('')
+  + `<div class="job-card" style="border-left-color:var(--gold);background:rgba(201,168,76,.04)">
+      <div class="job-dept" style="color:var(--gold)">Open Application</div>
+      <div class="job-title">Don't See Your Role?</div>
+      <div class="job-meta"><span>📍 Flexible</span></div>
+      <p class="job-desc">Send us an open application. If you're exceptional at what you do and believe in our mission, we'd love to hear from you.</p>
+      <button class="job-apply" onclick="openJobModal('Open Application')">Send Open Application →</button>
+    </div>`;
+}
+
+// ── Submit forms to Firebase ──
+window.submitFormToFirebase = async function(tab, data) {
+  try {
+    const { addDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
+    await addDoc(collection(db,'applications'), { ...data, type: tab==='job'?'job':'trial', status:'new', ts: serverTimestamp() });
+    console.log('Application saved to Firebase');
+  } catch(e) { console.log('Firebase submit:', e.message); }
+};
+
+// ── Kick off loads ──
+loadAlumniFromFirebase();
+loadTeamFromFirebase();
+</script>
+
+<!-- ═══════════ ADMIN ACCESS BUTTON ═══════════ -->
+<a class="admin-fab" onclick="openAdminLogin()" title="Admin">
+  ⚙️
+  <span class="admin-fab-tooltip">Admin Panel</span>
+</a>
+
+<!-- ═══════════ ADMIN LOGIN OVERLAY ═══════════ -->
+<div class="admin-login-overlay" id="adminLoginOverlay" onclick="closeAdminLoginOut(event)">
+  <div class="admin-login-box" style="position:relative">
+    <button class="admin-login-close" onclick="closeAdminLogin()">✕</button>
+    <div class="admin-login-logo">
+      <div class="admin-login-crest"></div>
+      <div>
+        <div class="admin-login-title">SUDEVA CMS</div>
+        <div class="admin-login-sub">Admin Panel Access</div>
+      </div>
+    </div>
+    <label class="admin-login-label">Password</label>
+    <input class="admin-login-input" type="password" id="adminPassword" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')checkAdminLogin()">
+    <button class="admin-login-btn" onclick="checkAdminLogin()">Enter Admin Panel →</button>
+    <div class="admin-login-error" id="adminError">Incorrect password. Please try again.</div>
+    <p style="font-size:11px;color:rgba(245,245,240,0.25);text-align:center;margin-top:18px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px">
+      Contact Sudeva IT to reset your password
+    </p>
+  </div>
+</div>
+
+<script>
+// ── ADMIN LOGIN ──
+// Default password is "sudeva2024" — change this to something stronger
+const ADMIN_PASSWORD = 'sudeva2024';
+
+function openAdminLogin() {
+  document.getElementById('adminLoginOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('adminPassword').focus(), 100);
+}
+function closeAdminLogin() {
+  document.getElementById('adminLoginOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  document.getElementById('adminPassword').value = '';
+  document.getElementById('adminError').style.display = 'none';
+}
+function closeAdminLoginOut(e) {
+  if (e.target === document.getElementById('adminLoginOverlay')) closeAdminLogin();
+}
+function checkAdminLogin() {
+  const pw = document.getElementById('adminPassword').value;
+  if (pw === ADMIN_PASSWORD) {
+    closeAdminLogin();
+    // Open admin panel — works on GitHub Pages since both files are in same repo
+    window.open('sudeva-admin.html', '_blank');
+  } else {
+    document.getElementById('adminError').style.display = 'block';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminPassword').focus();
+    // Shake animation
+    const box = document.querySelector('.admin-login-box');
+    box.style.animation = 'none';
+    box.style.transform = 'translateX(-8px)';
+    setTimeout(() => { box.style.transform='translateX(8px)'; }, 80);
+    setTimeout(() => { box.style.transform='translateX(-5px)'; }, 160);
+    setTimeout(() => { box.style.transform='translateX(5px)'; }, 240);
+    setTimeout(() => { box.style.transform='translateX(0)'; box.style.transition='transform .2s'; }, 320);
+  }
+}
+// Close with Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('adminLoginOverlay').classList.contains('open')) {
+    closeAdminLogin();
+  }
+});
+</script>
+</body>
+</html>
